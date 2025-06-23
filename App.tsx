@@ -3,10 +3,11 @@ import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-d
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-// import SourcingPage from './pages/SourcingPage'; // Removed
-// import ScreeningPage from './pages/ScreeningPage'; // Removed
-// import InterviewPage from './pages/InterviewPage'; // Removed
-// import CopilotPage from './pages/CopilotPage'; // Removed
+import SourcingPage from './pages/SourcingPage';
+import ScreeningPage from './pages/ScreeningPage';
+import InterviewPage from './pages/InterviewPage';
+import CopilotPage from './pages/CopilotPage';
+import PricingPage from './pages/PricingPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Helper component to handle scrolling for hash links
@@ -35,10 +36,11 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/features/sourcing" element={<SourcingPage />} /> // Removed */}
-            {/* <Route path="/features/screening" element={<ScreeningPage />} /> // Removed */}
-            {/* <Route path="/features/interview" element={<InterviewPage />} /> // Removed */}
-            {/* <Route path="/features/copilot" element={<CopilotPage />} />    // Removed */}
+            <Route path="/features/sourcing" element={<SourcingPage />} />
+            <Route path="/features/screening" element={<ScreeningPage />} />
+            <Route path="/features/interviews" element={<InterviewPage />} />
+            <Route path="/features/copilot" element={<CopilotPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="*" element={<Navigate replace to="/404" />} />
           </Routes>

@@ -12,10 +12,11 @@ import AnimatedCopilotFeedback from './components/animations/AnimatedCopilotFeed
 
 export const NAVIGATION_ITEMS: NavItem[] = [
   { name: 'Home', path: '/' },
-  { name: 'Sourcing', path: '/#sourcing-section' },
-  { name: 'Screening', path: '/#screening-section' },
-  { name: 'Interview', path: '/#interview-section' },
-  { name: 'Copilot', path: '/#copilot-section' },
+  { name: 'Sourcing', path: '/features/sourcing' },
+  { name: 'Screening', path: '/features/screening' },
+  { name: 'Interviews', path: '/features/interviews' },
+  { name: 'Copilot', path: '/features/copilot' },
+  { name: 'Pricing', path: '/pricing' },
 ];
 
 // Simplified for homepage showcase: one key feature per category

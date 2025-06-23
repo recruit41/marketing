@@ -10,14 +10,7 @@ const Navbar: React.FC = () => {
   const handleNavClick = (path: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     setIsOpen(false); // Close mobile menu if open
-    
-    if (path.startsWith('/#')) {
-        // For homepage sections, navigate and let the App's ScrollToSection handle scrolling
-        navigate(path);
-    } else {
-        // For other paths (like '/')
-        navigate(path);
-    }
+    navigate(path);
   };
 
 
@@ -35,18 +28,20 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {NAVIGATION_ITEMS.map((item) => (
-                <a // Changed from NavLink to simple anchor for hash scrolling
+                <NavLink
                   key={item.name}
-                  href={item.path} // Use direct href for hash links
+                  to={item.path}
                   onClick={(e) => handleNavClick(item.path, e)}
-                  className={
-                    `px-3 py-2 rounded-md text-sm font-medium text-brandGray-DEFAULT hover:bg-gray-100 hover:text-brandGray-dark`
-                    // Active state for hash links can be more complex, removed for simplicity here
-                    // If active styling is needed, it requires listening to scroll events or more complex logic
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-md text-sm font-medium transition duration-150 ${
+                      isActive
+                        ? 'text-brandOrange bg-brandOrange-light'
+                        : 'text-brandGray hover:bg-gray-100 hover:text-brandGray-dark'
+                    }`
                   }
                 >
                   {item.name}
-                </a>
+                </NavLink>
               ))}
             </div>
           </div>
@@ -85,14 +80,20 @@ const Navbar: React.FC = () => {
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {NAVIGATION_ITEMS.map((item) => (
-              <a // Changed from NavLink for mobile as well
+              <NavLink
                 key={item.name}
-                href={item.path}
+                to={item.path}
                 onClick={(e) => handleNavClick(item.path, e)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-brandGray-DEFAULT hover:bg-gray-100 hover:text-brandGray-dark"
+                className={({ isActive }) =>
+                  `block px-3 py-2 rounded-md text-base font-medium transition duration-150 ${
+                    isActive
+                      ? 'text-brandOrange bg-brandOrange-light'
+                      : 'text-brandGray hover:bg-gray-100 hover:text-brandGray-dark'
+                  }`
+                }
               >
                 {item.name}
-              </a>
+              </NavLink>
             ))}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">

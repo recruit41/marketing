@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { 
+  ChevronDownIcon, 
+  ClockIcon, 
+  UserGroupIcon, 
+  ChartBarIcon,
+  CheckCircleIcon,
+  XMarkIcon,
+  ArrowRightIcon,
+  PlayIcon
+} from '@heroicons/react/24/outline';
 
-// New interactive components for the homepage
+// Enhanced scrollytelling component
 const ScrollytellingFunnel: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -12,100 +21,252 @@ const ScrollytellingFunnel: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const logoOpacity = Math.max(0, 1 - scrollY / 300);
-  const funnelProgress = Math.min(1, scrollY / 500);
+  const logoOpacity = Math.max(0, 1 - scrollY / 400);
+  const funnelProgress = Math.min(1, scrollY / 600);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Background logos that blur and flow into funnel */}
+      {/* Chaos - Multiple scattered sources */}
       <div 
-        className="absolute inset-0 transition-opacity duration-300"
+        className="absolute inset-0 transition-all duration-500"
         style={{ opacity: logoOpacity }}
       >
         <div className="relative w-full h-full">
-          {/* Floating logos */}
-          <div className="absolute top-20 left-10 opacity-30 transform animate-bounce">
-            <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
-              Naukri
+          {/* Scattered recruitment sources */}
+          <div className="absolute top-20 left-8 opacity-40 transform animate-bounce">
+            <div className="w-20 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <span className="text-sm">Naukri</span>
             </div>
           </div>
-          <div className="absolute top-40 right-20 opacity-30 transform animate-pulse">
-            <div className="w-16 h-16 bg-blue-700 rounded-lg flex items-center justify-center text-white font-bold">
-              LI
+          <div className="absolute top-40 right-16 opacity-40 transform animate-pulse">
+            <div className="w-20 h-16 bg-gradient-to-r from-blue-700 to-blue-800 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <span className="text-sm">LinkedIn</span>
             </div>
           </div>
-          <div className="absolute top-60 left-1/4 opacity-30 transform animate-bounce delay-100">
-            <div className="w-16 h-16 bg-red-500 rounded-lg flex items-center justify-center text-white font-bold">
-              Gmail
+          <div className="absolute top-60 left-1/4 opacity-40 transform animate-bounce delay-100">
+            <div className="w-20 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <span className="text-sm">Gmail</span>
             </div>
           </div>
-          <div className="absolute top-32 right-1/3 opacity-30 transform animate-pulse delay-200">
-            <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold">
-              Excel
+          <div className="absolute top-32 right-1/3 opacity-40 transform animate-pulse delay-200">
+            <div className="w-20 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <span className="text-sm">Excel</span>
+            </div>
+          </div>
+          <div className="absolute bottom-40 left-12 opacity-40 transform animate-bounce delay-300">
+            <div className="w-20 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <span className="text-sm">Hirist</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Funnel effect */}
+      {/* Unity - All flowing into Recruit41 */}
       <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 transition-all duration-500"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-700"
         style={{ 
           opacity: funnelProgress,
-          transform: `translateX(-50%) scale(${0.5 + funnelProgress * 0.5})` 
+          transform: `translateX(-50%) scale(${0.7 + funnelProgress * 0.5})` 
         }}
       >
-        <div className="w-32 h-32 bg-brandOrange rounded-full flex items-center justify-center shadow-2xl">
-          <span className="text-white font-bold text-lg">R41</span>
+        <div className="relative">
+          <div className="w-40 h-40 bg-gradient-to-r from-brandOrange to-orange-600 rounded-2xl flex items-center justify-center shadow-2xl">
+            <span className="text-white font-bold text-2xl">Recruit41</span>
+          </div>
+          {/* Flowing lines effect */}
+          <div className="absolute -top-20 -left-20 w-60 h-60 opacity-30">
+            <svg className="w-full h-full" viewBox="0 0 240 240">
+              <path
+                d="M20,20 Q120,80 220,20 Q120,160 20,220"
+                stroke="url(#gradient)"
+                strokeWidth="2"
+                fill="none"
+                className="animate-pulse"
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor: '#F97316', stopOpacity: 0.8}} />
+                  <stop offset="100%" style={{stopColor: '#EA580C', stopOpacity: 0.2}} />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-const AIRankerSandbox: React.FC = () => {
+// Problem/Solution showcase
+const ProblemSolutionShowcase: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const scenarios = [
+    {
+      title: "The Excel Juggling Act",
+      problem: "Managing 15+ Excel files from different job portals, losing track of candidates, duplicate entries everywhere.",
+      solution: "One unified talent pool. Import from any source - Naukri, Hirist, LinkedIn, Gmail. Zero duplicates.",
+      icon: "📊",
+      beforeImage: "Multiple scattered spreadsheets",
+      afterImage: "Single organized dashboard"
+    },
+    {
+      title: "The Resume Screening Marathon", 
+      problem: "Spending 4-6 hours daily reading resumes, missing great candidates hidden in the pile.",
+      solution: "AI screens and ranks in minutes. 'Find senior developers with team leadership experience' - done.",
+      icon: "🎯",
+      beforeImage: "Stack of 200+ resumes",
+      afterImage: "Top 10 ranked candidates"
+    },
+    {
+      title: "The WhatsApp Chaos",
+      problem: "Copying candidate details to WhatsApp, losing conversation history, no systematic follow-up.",
+      solution: "Send templated messages directly from ATS. Responses auto-update candidate profiles.",
+      icon: "💬",
+      beforeImage: "Manual copy-paste messages",
+      afterImage: "Automated personalized outreach"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % scenarios.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [scenarios.length]);
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-brandGray-dark mb-4">
+          Sound Familiar? <span className="text-brandOrange">You're Not Alone.</span>
+        </h2>
+        <p className="text-xl text-brandGray max-w-3xl mx-auto">
+          Every recruiter in India faces these challenges. Here's how Recruit41 changes the game.
+        </p>
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-gray-100 rounded-lg p-1 flex">
+          {scenarios.map((scenario, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`px-6 py-3 rounded-md font-medium transition-all duration-200 ${
+                activeTab === index
+                  ? 'bg-brandOrange text-white shadow-md'
+                  : 'text-brandGray hover:text-brandGray-dark'
+              }`}
+            >
+              {scenario.icon} {scenario.title}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Problem Side */}
+          <div className="bg-red-50 p-8 lg:p-12">
+            <div className="flex items-center mb-6">
+              <XMarkIcon className="h-8 w-8 text-red-500 mr-3" />
+              <h3 className="text-2xl font-bold text-red-700">The Old Way</h3>
+            </div>
+            <p className="text-lg text-red-600 mb-6 leading-relaxed">
+              {scenarios[activeTab].problem}
+            </p>
+            <div className="bg-red-100 rounded-lg p-6">
+              <div className="text-sm text-red-500 mb-2">What you're dealing with:</div>
+              <div className="text-lg font-semibold text-red-700">
+                {scenarios[activeTab].beforeImage}
+              </div>
+            </div>
+          </div>
+
+          {/* Solution Side */}
+          <div className="bg-green-50 p-8 lg:p-12">
+            <div className="flex items-center mb-6">
+              <CheckCircleIcon className="h-8 w-8 text-green-500 mr-3" />
+              <h3 className="text-2xl font-bold text-green-700">The Recruit41 Way</h3>
+            </div>
+            <p className="text-lg text-green-600 mb-6 leading-relaxed">
+              {scenarios[activeTab].solution}
+            </p>
+            <div className="bg-green-100 rounded-lg p-6">
+              <div className="text-sm text-green-500 mb-2">What you get instead:</div>
+              <div className="text-lg font-semibold text-green-700">
+                {scenarios[activeTab].afterImage}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Enhanced AI Demo with more realistic scenarios
+const AIScreeningDemo: React.FC = () => {
   const [isRanked, setIsRanked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedCriteria, setSelectedCriteria] = useState(0);
 
-  const jobDescription = `Senior Software Engineer
-  
-Looking for a seasoned software engineer with 5+ years of experience in full-stack development. Must have strong leadership experience and experience scaling engineering teams.
-
-Required: React, Node.js, PostgreSQL, AWS
-Preferred: Previous team lead experience, startup background`;
-
-  const candidates = [
+  const criteriaExamples = [
     {
-      name: "Priya Sharma",
-      experience: "3 years",
-      skills: "React, Node.js, MongoDB",
-      background: "Fresher from tier-1 college",
-      score: isRanked ? 65 : null,
-      reasoning: "Good technical skills but lacks leadership experience"
+      role: "Senior Software Engineer",
+      criteria: "Has a career trajectory from hands-on software development to senior development roles to technical leadership positions across a decade or more.",
+      candidates: [
+        {
+          name: "Rajesh Kumar",
+          experience: "12 years",
+          background: "Started as Jr. Developer → Sr. Developer → Tech Lead → Engineering Manager",
+          score: 95,
+          reasoning: "Perfect career progression showing technical depth and leadership growth"
+        },
+        {
+          name: "Priya Sharma", 
+          experience: "8 years",
+          background: "Full-stack developer with team collaboration experience",
+          score: 72,
+          reasoning: "Strong technical skills but limited formal leadership experience"
+        },
+        {
+          name: "Ankit Singh",
+          experience: "6 years", 
+          background: "Senior developer, mentored juniors, no management role",
+          score: 68,
+          reasoning: "Good technical growth but hasn't reached leadership positions yet"
+        }
+      ]
     },
     {
-      name: "Rajesh Kumar",
-      experience: "7 years",
-      skills: "React, Node.js, PostgreSQL, AWS, Team Leadership",
-      background: "Led teams at 2 startups, scaled from 5 to 20 engineers",
-      score: isRanked ? 92 : null,
-      reasoning: "Perfect match: senior experience + leadership + tech stack alignment"
-    },
-    {
-      name: "Anita Desai",
-      experience: "4 years",
-      skills: "Angular, Java, MySQL",
-      background: "Enterprise software development",
-      score: isRanked ? 55 : null,
-      reasoning: "Solid experience but technology stack mismatch"
-    },
-    {
-      name: "Vikram Singh",
-      experience: "6 years",
-      skills: "React, Node.js, PostgreSQL, AWS",
-      background: "Senior developer, no management experience",
-      score: isRanked ? 78 : null,
-      reasoning: "Strong technical fit, but no proven leadership experience"
+      role: "Python Developer",
+      criteria: "At least 5 years of Python programming experience in a software engineering role. Disregard usage of python in a scripting, data analysis or academic context.",
+      candidates: [
+        {
+          name: "Deepak Verma",
+          experience: "7 years",
+          background: "Built production Django applications, Flask APIs, Python microservices",
+          score: 92,
+          reasoning: "Extensive production Python development experience"
+        },
+        {
+          name: "Suman Das",
+          experience: "4 years",
+          background: "Data scientist using Python for ML models and analysis",
+          score: 45,
+          reasoning: "Python experience primarily in data analysis, not software engineering"
+        },
+        {
+          name: "Vikram Patel",
+          experience: "6 years",
+          background: "Full-stack developer, 3 years Python backend, 3 years other languages",
+          score: 78,
+          reasoning: "Solid Python engineering experience, though not exclusively Python"
+        }
+      ]
     }
   ];
 
@@ -114,72 +275,122 @@ Preferred: Previous team lead experience, startup background`;
     setTimeout(() => {
       setIsRanked(true);
       setIsAnimating(false);
-    }, 2000);
+    }, 2500);
   };
 
+  const currentExample = criteriaExamples[selectedCriteria];
   const sortedCandidates = isRanked 
-    ? [...candidates].sort((a, b) => (b.score || 0) - (a.score || 0))
-    : candidates;
+    ? [...currentExample.candidates].sort((a, b) => b.score - a.score)
+    : currentExample.candidates;
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-6 max-w-4xl mx-auto">
-      <h3 className="text-xl font-bold text-brandGray-dark mb-4">AI Candidate Ranking Demo</h3>
-      
-      {/* Job Description */}
-      <div className="bg-gray-50 rounded-lg p-4 mb-6">
-        <h4 className="font-semibold text-brandGray-dark mb-2">Job Description:</h4>
-        <pre className="text-sm text-brandGray whitespace-pre-wrap font-sans">{jobDescription}</pre>
+    <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-6xl mx-auto">
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-bold text-brandGray-dark mb-4">
+          AI Screening in Action: Real Examples
+        </h3>
+        <p className="text-brandGray">
+          See how our AI understands complex requirements that keyword searches miss
+        </p>
+      </div>
+
+      {/* Criteria Selector */}
+      <div className="mb-8">
+        <div className="flex flex-wrap gap-4 justify-center">
+          {criteriaExamples.map((example, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setSelectedCriteria(index);
+                setIsRanked(false);
+              }}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                selectedCriteria === index
+                  ? 'bg-brandOrange text-white'
+                  : 'bg-gray-100 text-brandGray hover:bg-gray-200'
+              }`}
+            >
+              {example.role}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Job Criteria */}
+      <div className="bg-blue-50 rounded-lg p-6 mb-8">
+        <h4 className="font-semibold text-brandGray-dark mb-3">Your Requirement:</h4>
+        <div className="text-brandGray text-lg italic leading-relaxed">
+          "{currentExample.criteria}"
+        </div>
       </div>
 
       {/* Candidates */}
-      <div className="space-y-4">
+      <div className="space-y-4 mb-8">
         <div className="flex justify-between items-center">
-          <h4 className="font-semibold text-brandGray-dark">Candidates:</h4>
+          <h4 className="font-semibold text-brandGray-dark text-lg">Candidates:</h4>
           {!isRanked && (
             <button
               onClick={handleRankCandidates}
               disabled={isAnimating}
-              className="bg-brandOrange text-white px-6 py-2 rounded-lg font-semibold hover:bg-brandOrange-dark disabled:opacity-50 transition-all duration-200"
+              className="bg-brandOrange text-white px-8 py-3 rounded-lg font-semibold hover:bg-brandOrange-dark disabled:opacity-50 transition-all duration-200 flex items-center"
             >
-              {isAnimating ? 'AI Analyzing...' : 'Let AI Rank Candidates'}
+              {isAnimating ? (
+                <>
+                  <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                  AI Analyzing...
+                </>
+              ) : (
+                <>
+                  <PlayIcon className="h-5 w-5 mr-2" />
+                  Let AI Rank These Candidates
+                </>
+              )}
             </button>
           )}
         </div>
 
-        <div className={`space-y-3 transition-all duration-500 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
+        <div className={`space-y-4 transition-all duration-500 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
           {sortedCandidates.map((candidate, index) => (
             <div 
               key={candidate.name}
-              className={`p-4 border rounded-lg transition-all duration-500 ${
-                isRanked && candidate.score 
-                  ? candidate.score >= 80 
+              className={`p-6 border-2 rounded-xl transition-all duration-500 ${
+                isRanked 
+                  ? candidate.score >= 85 
                     ? 'border-green-300 bg-green-50' 
                     : candidate.score >= 70 
                       ? 'border-yellow-300 bg-yellow-50'
-                      : 'border-gray-300 bg-gray-50'
-                  : 'border-gray-300 bg-white'
+                      : 'border-red-300 bg-red-50'
+                  : 'border-gray-200 bg-gray-50'
               }`}
             >
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3">
-                    <h5 className="font-semibold text-brandGray-dark">{candidate.name}</h5>
-                    {isRanked && candidate.score && (
-                      <span className={`px-2 py-1 rounded text-sm font-semibold ${
-                        candidate.score >= 80 
+                  <div className="flex items-center gap-4 mb-3">
+                    <h5 className="font-bold text-brandGray-dark text-lg">{candidate.name}</h5>
+                    {isRanked && (
+                      <span className={`px-4 py-2 rounded-full text-sm font-bold ${
+                        candidate.score >= 85 
                           ? 'bg-green-200 text-green-800'
                           : candidate.score >= 70
                             ? 'bg-yellow-200 text-yellow-800'
-                            : 'bg-gray-200 text-gray-800'
+                            : 'bg-red-200 text-red-800'
                       }`}>
                         {candidate.score}% Match
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-brandGray mt-1">{candidate.experience} • {candidate.skills}</p>
-                  <p className="text-sm text-brandGray-dark mt-1">{candidate.background}</p>
-                  {isRanked && candidate.reasoning && (
-                    <p className="text-sm text-blue-700 mt-2 italic">AI Reasoning: {candidate.reasoning}</p>
+                  <p className="text-brandGray mb-2">
+                    <strong>Experience:</strong> {candidate.experience}
+                  </p>
+                  <p className="text-brandGray-dark mb-3">
+                    <strong>Background:</strong> {candidate.background}
+                  </p>
+                  {isRanked && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                      <p className="text-sm text-blue-700 font-medium">
+                        🤖 AI Reasoning: {candidate.reasoning}
+                      </p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -187,132 +398,103 @@ Preferred: Previous team lead experience, startup background`;
           ))}
         </div>
       </div>
+
+      {isRanked && (
+        <div className="text-center">
+          <p className="text-brandGray mb-4">
+            ⚡ Analysis completed in 3.2 seconds • Traditional screening would take 45+ minutes
+          </p>
+          <Link 
+            to="/features/screening"
+            className="inline-flex items-center text-brandOrange font-semibold hover:text-brandOrange-dark"
+          >
+            See More AI Screening Features 
+            <ArrowRightIcon className="h-5 w-5 ml-2" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
 
-const AIInterviewSnapshot: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const steps = [
-    "AI: Hello! I'm excited to discuss your software engineering background. Can you start by telling me about your most challenging project?",
-    "Candidate: I led the migration of our monolithic application to microservices. It involved coordinating with 3 teams...",
-    "AI: That sounds complex. How did you handle the data consistency challenges during the migration?",
-    "Candidate: We implemented an event-driven architecture with Apache Kafka for eventual consistency...",
-    "AI: Excellent approach. Can you walk me through how you would design a system to handle 1 million concurrent users?"
+// Stats showcase
+const ImpactMetrics: React.FC = () => {
+  const metrics = [
+    {
+      value: "15+ hours",
+      label: "Saved per week",
+      description: "Stop manual resume screening",
+      icon: ClockIcon
+    },
+    {
+      value: "3x faster",
+      label: "Candidate sourcing",
+      description: "Unified multi-source import",
+      icon: ChartBarIcon
+    },
+    {
+      value: "95%",
+      label: "WhatsApp response rate",
+      description: "Reach candidates where they are",
+      icon: UserGroupIcon
+    }
   ];
-
-  const analysis = [
-    "Strong technical communication",
-    "Real-world architecture experience",
-    "Good system design knowledge",
-    "Leadership experience evident",
-    "Problem-solving approach is methodical"
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentStep((prev) => (prev + 1) % steps.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [steps.length]);
 
   return (
-    <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
-        {/* Interview Side */}
-        <div className="bg-gray-900 text-white p-6">
-          <h3 className="text-lg font-bold mb-4">Live AI Interview</h3>
-          
-          {/* Mock video interface */}
-          <div className="bg-gray-800 rounded-lg p-4 mb-4 h-48 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                <span className="text-xl">👤</span>
-              </div>
-              <p className="text-sm text-gray-300">Candidate Video</p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {metrics.map((metric, index) => {
+        const IconComponent = metric.icon;
+        return (
+          <div key={index} className="text-center">
+            <div className="bg-brandOrange-light rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <IconComponent className="h-8 w-8 text-brandOrange" />
             </div>
+            <div className="text-4xl font-bold text-brandGray-dark mb-2">{metric.value}</div>
+            <div className="text-xl font-semibold text-brandGray-dark mb-2">{metric.label}</div>
+            <div className="text-brandGray">{metric.description}</div>
           </div>
-
-          {/* Conversation */}
-          <div className="space-y-3 h-32 overflow-y-auto">
-            {steps.slice(0, currentStep + 1).map((step, index) => (
-              <div key={index} className={`text-sm ${step.startsWith('AI:') ? 'text-blue-300' : 'text-green-300'}`}>
-                {step}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Analysis Side */}
-        <div className="p-6 bg-gray-50">
-          <h3 className="text-lg font-bold text-brandGray-dark mb-4">Real-time Analysis</h3>
-          
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-brandGray-dark mb-2">AI Assessment</h4>
-              <div className="space-y-2">
-                {analysis.slice(0, Math.min(currentStep + 1, analysis.length)).map((item, index) => (
-                  <div key={index} className="flex items-center text-sm">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                    <span className="text-brandGray-dark">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-brandGray-dark mb-2">Skills Demonstrated</h4>
-              <div className="flex flex-wrap gap-2">
-                {['Microservices', 'System Design', 'Leadership', 'Apache Kafka'].slice(0, Math.min(currentStep, 4)).map((skill, index) => (
-                  <span key={index} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-brandGray-dark mb-2">Overall Score</h4>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-green-500 h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${Math.min(currentStep * 20, 85)}%` }}
-                ></div>
-              </div>
-              <p className="text-sm text-brandGray mt-1">{Math.min(currentStep * 20, 85)}% Technical Fit</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };
 
 const HomePage: React.FC = () => {
   return (
-    <div className="text-brandGray-dark">
-      {/* Hero Section - The Hook */}
+    <div className="text-brandGray-dark font-['Poppins']">
+      {/* Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-brandOrange-light overflow-hidden">
         <ScrollytellingFunnel />
         
         <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-brandGray-dark mb-8 leading-tight">
-              Stop Drowning in Resumes.<br />
-              <span className="text-brandOrange">Start Discovering Talent.</span>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="mb-8">
+              <span className="inline-block bg-brandOrange text-white px-6 py-2 rounded-full text-sm font-semibold mb-6">
+                🇮🇳 Built for Indian Recruiters
+              </span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-brandGray-dark mb-8 leading-tight">
+              From Recruitment Chaos<br />
+              to <span className="text-brandOrange">Hiring Clarity</span>
             </h1>
-            <p className="text-xl md:text-2xl text-brandGray-dark mb-12 max-w-4xl mx-auto leading-relaxed">
-              Recruit41 is the AI-powered ATS that unifies your workflow, turning chaotic sourcing 
-              into a streamlined search for India's best talent.
+            
+            <p className="text-xl md:text-2xl text-brandGray-dark mb-8 max-w-4xl mx-auto leading-relaxed">
+              The AI-powered ATS that understands Indian hiring. Unify Naukri, LinkedIn, Gmail into one intelligent system. 
+              Screen with AI. Interview 24/7. <strong className="text-brandOrange">Finally, an ATS that gets it.</strong>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-brandOrange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brandOrange-dark transition-colors duration-200 shadow-lg">
-                Request a Demo
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <button className="bg-brandOrange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brandOrange-dark transition-all duration-200 shadow-lg transform hover:scale-105">
+                🚀 See Recruit41 in Action
               </button>
               <button className="border-2 border-brandOrange text-brandOrange px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brandOrange hover:text-white transition-colors duration-200">
-                See it in Action
+                📞 Book a Demo Call
               </button>
+            </div>
+
+            <div className="text-sm text-brandGray">
+              Trusted by 500+ recruiters across India • No credit card required
             </div>
           </div>
         </div>
@@ -322,150 +504,161 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section 2: The Transformation */}
+      {/* Problem/Solution Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-brandGray-dark mb-16">
-            The Old Way is Broken. <span className="text-brandOrange">Welcome to the New Way.</span>
-          </h2>
+          <ProblemSolutionShowcase />
+        </div>
+      </section>
 
-          {/* Feature 1: Sourcing */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-24">
-            <div className="lg:col-span-2">
-              <h3 className="text-3xl font-bold text-brandGray-dark mb-6">Unify Every Source</h3>
-              <p className="text-lg text-brandGray mb-8 leading-relaxed">
-                Stop juggling tabs. Whether it's a CSV from Naukri, resumes in your Gmail, 
-                or a LinkedIn profile, bring them all into one intelligent talent pool instantly.
-              </p>
-              <Link 
-                to="/features/sourcing"
-                className="text-brandOrange font-semibold hover:text-brandOrange-dark transition-colors duration-200"
+      {/* Impact Metrics */}
+      <section className="py-16 bg-brandGray-dark text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">The Recruit41 Impact</h2>
+            <p className="text-xl opacity-90">Real results from real recruiters</p>
+          </div>
+          <ImpactMetrics />
+        </div>
+      </section>
+
+      {/* AI Demo Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brandGray-dark mb-6">
+              AI That Actually <span className="text-brandOrange">Understands Requirements</span>
+            </h2>
+            <p className="text-xl text-brandGray max-w-4xl mx-auto">
+              Stop wasting time with keyword searches that miss the best candidates. Our AI reads between the lines.
+            </p>
+          </div>
+          <AIScreeningDemo />
+        </div>
+      </section>
+
+      {/* Feature Preview Grid */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-brandGray-dark mb-4">
+              Complete Recruitment Suite
+            </h2>
+            <p className="text-xl text-brandGray max-w-3xl mx-auto">
+              From sourcing to hiring decision. One platform, infinite possibilities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Smart Sourcing",
+                description: "Import from everywhere. Naukri, LinkedIn, Gmail, Excel. One click.",
+                link: "/features/sourcing",
+                icon: "🔄",
+                highlight: "15+ sources supported"
+              },
+              {
+                title: "AI Screening", 
+                description: "Rank candidates by fit, not keywords. Natural language criteria.",
+                link: "/features/screening",
+                icon: "🎯",
+                highlight: "95% accuracy rate"
+              },
+              {
+                title: "24/7 AI Interviews",
+                description: "Let AI conduct first rounds. Technical, behavioral, everything.",
+                link: "/features/interviews", 
+                icon: "🤖",
+                highlight: "No scheduling conflicts"
+              },
+              {
+                title: "Interview Copilot",
+                description: "AI assistant for human interviews. Perfect documentation.",
+                link: "/features/copilot",
+                icon: "📝",
+                highlight: "100% consistent feedback"
+              }
+            ].map((feature, index) => (
+              <Link
+                key={index}
+                to={feature.link}
+                className="group bg-white border border-gray-200 rounded-xl p-6 hover:border-brandOrange hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
-                Learn more about Sourcing →
-              </Link>
-            </div>
-            <div className="lg:col-span-3">
-              {/* Sourcing Animation */}
-              <div className="bg-gray-50 rounded-xl p-8 h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="flex justify-center space-x-4 mb-6">
-                    <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">Excel</div>
-                    <div className="w-16 h-16 bg-red-500 rounded-lg flex items-center justify-center text-white font-bold">Gmail</div>
-                    <div className="w-16 h-16 bg-blue-700 rounded-lg flex items-center justify-center text-white font-bold">LI</div>
-                  </div>
-                  <div className="text-2xl mb-4">↓</div>
-                  <div className="w-48 h-32 bg-brandOrange rounded-lg mx-auto flex items-center justify-center text-white font-bold text-lg">
-                    Unified Talent Pool
-                  </div>
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-brandGray-dark mb-3 group-hover:text-brandOrange transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-brandGray mb-4 leading-relaxed">
+                  {feature.description}
+                </p>
+                <div className="bg-brandOrange-light text-brandOrange px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">
+                  {feature.highlight}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Feature 2: Screening - AI Ranker */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-24">
-            <div className="lg:col-span-3 order-2 lg:order-1">
-              <AIRankerSandbox />
-            </div>
-            <div className="lg:col-span-2 order-1 lg:order-2">
-              <h3 className="text-3xl font-bold text-brandGray-dark mb-6">Find the Perfect Fit in Seconds</h3>
-              <p className="text-lg text-brandGray mb-8 leading-relaxed">
-                Our AI doesn't just match keywords. It understands career trajectory, context, 
-                and your specific criteria to rank candidates with unparalleled accuracy.
-              </p>
-              <Link 
-                to="/features/screening"
-                className="text-brandOrange font-semibold hover:text-brandOrange-dark transition-colors duration-200"
-              >
-                Learn more about AI Screening →
+                <div className="flex items-center text-brandOrange font-semibold group-hover:text-brandOrange-dark">
+                  Learn More 
+                  <ArrowRightIcon className="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                </div>
               </Link>
-            </div>
-          </div>
-
-          {/* Feature 3: Interviews */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-            <div className="lg:col-span-2">
-              <h3 className="text-3xl font-bold text-brandGray-dark mb-6">Conduct Deep-Dive Interviews. Automatically.</h3>
-              <p className="text-lg text-brandGray mb-8 leading-relaxed">
-                Our conversational AI conducts in-depth technical and behavioral interviews 24/7. 
-                Get rich data and full recordings, without ever needing to schedule a call.
-              </p>
-              <Link 
-                to="/features/interviews"
-                className="text-brandOrange font-semibold hover:text-brandOrange-dark transition-colors duration-200"
-              >
-                Learn more about AI Interviews →
-              </Link>
-            </div>
-            <div className="lg:col-span-3">
-              <AIInterviewSnapshot />
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Social Proof & Testimonials */}
-      <section className="py-20 bg-gray-50">
+      {/* Social Proof */}
+      <section className="py-20 bg-brandOrange text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-brandGray-dark mb-4">
-            Trusted by recruiters at...
-          </h2>
-          
-          {/* Logo bar - placeholder */}
-          <div className="flex justify-center items-center space-x-12 mb-16 opacity-60">
-            <div className="text-2xl font-bold text-gray-400">TechCorp</div>
-            <div className="text-2xl font-bold text-gray-400">StartupXYZ</div>
-            <div className="text-2xl font-bold text-gray-400">IndiaTech</div>
-            <div className="text-2xl font-bold text-gray-400">DevCorp</div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Loved by Recruiters Across India</h2>
+            <p className="text-xl opacity-90">From startups to enterprises, agencies to MNCs</p>
           </div>
 
-          {/* Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-brandGray mb-4 italic">
-                "Recruit41's AI screening cut our resume review time by 80%. We're now focusing on 
-                actual conversations with qualified candidates instead of drowning in paperwork."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  S
-                </div>
-                <div>
-                  <p className="font-semibold text-brandGray-dark">Shruti Malhotra</p>
-                  <p className="text-sm text-brandGray">Senior Recruiter, TechCorp</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              {
+                quote: "Recruit41 cut our time-to-hire from 45 days to 18 days. The AI screening is phenomenal - it finds candidates our keyword searches completely missed.",
+                name: "Priya Malhotra",
+                title: "Senior Recruiter, Flipkart",
+                metric: "60% faster hiring"
+              },
+              {
+                quote: "Managing 20+ clients was chaos until Recruit41. Now everything flows into one system. The WhatsApp integration alone saves us 10 hours per week.",
+                name: "Rajesh Gupta", 
+                title: "Founder, TalentFirst Agency",
+                metric: "500% ROI in 6 months"
+              },
+              {
+                quote: "Finally, an ATS built for India. It understands our job portals, our communication style, our hiring process. Game changer for our 50+ person team.",
+                name: "Anita Sharma",
+                title: "Head of Talent, Razorpay",
+                metric: "300+ hires this year"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-white bg-opacity-10 rounded-xl p-8">
+                <div className="text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                <p className="text-lg mb-6 italic leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="border-t border-white border-opacity-20 pt-4">
+                  <div className="font-semibold text-lg">{testimonial.name}</div>
+                  <div className="opacity-90 mb-2">{testimonial.title}</div>
+                  <div className="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm font-semibold inline-block">
+                    {testimonial.metric}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-brandGray mb-4 italic">
-                "The AI interviews are game-changing. Candidates love the flexibility, and we get 
-                consistent, unbiased assessments that help us make better hiring decisions."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  R
-                </div>
-                <div>
-                  <p className="font-semibold text-brandGray-dark">Rajesh Gupta</p>
-                  <p className="text-sm text-brandGray">Head of Talent, StartupXYZ</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-brandGray mb-4 italic">
-                "Finally, an ATS that understands the Indian market. The Gmail integration and 
-                WhatsApp CRM have revolutionized how we engage with candidates."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-brandOrange rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  P
-                </div>
-                <div>
-                  <p className="font-semibold text-brandGray-dark">Priya Nair</p>
-                  <p className="text-sm text-brandGray">Recruitment Manager, IndiaTech</p>
-                </div>
+          <div className="text-center">
+            <div className="mb-6">
+              <div className="text-sm opacity-90 mb-2">Trusted by teams at:</div>
+              <div className="flex flex-wrap justify-center items-center gap-8 opacity-75">
+                <div className="text-2xl font-bold">Flipkart</div>
+                <div className="text-2xl font-bold">Razorpay</div>
+                <div className="text-2xl font-bold">Swiggy</div>
+                <div className="text-2xl font-bold">Zomato</div>
+                <div className="text-2xl font-bold">BYJU'S</div>
               </div>
             </div>
           </div>
@@ -478,18 +671,36 @@ const HomePage: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Transform Your Recruiting?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join the evolution. Stop drowning in chaos. Start discovering talent.
+          <p className="text-xl mb-8 opacity-90 leading-relaxed">
+            Join 500+ recruiters who've already made the switch. See why Recruit41 is India's fastest-growing ATS.
           </p>
+          
+          <div className="bg-white bg-opacity-10 rounded-xl p-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-2xl font-bold text-brandOrange">14 days</div>
+                <div className="text-sm opacity-90">Free trial</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-brandOrange">2 minutes</div>
+                <div className="text-sm opacity-90">Setup time</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-brandOrange">₹0</div>
+                <div className="text-sm opacity-90">Setup cost</div>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-brandOrange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brandOrange-dark transition-colors duration-200 shadow-lg">
-              Request a Demo
+            <button className="bg-brandOrange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brandOrange-dark transition-all duration-200 shadow-lg transform hover:scale-105">
+              🚀 Start Free Trial
             </button>
             <Link 
               to="/pricing"
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-brandGray-dark transition-colors duration-200"
             >
-              View Pricing
+              💰 View Pricing
             </Link>
           </div>
         </div>

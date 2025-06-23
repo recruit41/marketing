@@ -59,6 +59,18 @@ Located in `/components/animations/`, these components demonstrate feature funct
 - ScrollToSection component handles automatic scrolling on hash changes
 - Navigation items defined in `constants.ts` NAVIGATION_ITEMS
 
+## GitHub Pages Deployment
+
+- **Deploy to GitHub Pages**: `npm run deploy`
+- **Build only**: `npm run build`
+- **Live URL**: https://recruit41.github.io/marketing/
+- **Base path configured**: `/marketing/` in vite.config.ts
+
+### Deployment Process
+1. `npm run deploy` runs predeploy script (builds the project)
+2. gh-pages deploys the `dist` folder to the `gh-pages` branch
+3. GitHub Pages serves the site from the gh-pages branch
+
 ### Github
 
-- Github cli tool is install you can use it to push and pull changes
+- Github cli tool is installed you can use it to push and pull changes

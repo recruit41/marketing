@@ -1,0 +1,94 @@
+/* Custom navbar styling */
+
+/* Change navbar background color to very light cream */
+.md-header {
+  background-color: #fffcf5;
+  /* Increase navbar height */
+  height: 4rem;
+}
+
+/* Increase logo size in navbar */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2.5rem !important;
+  width: auto !important;
+}
+
+/* Remove Recruit41 text from navbar */
+.md-header__title {
+  display: none !important;
+}
+
+/* Remove Recruit41 text from left sidebar */
+.md-nav__title {
+  display: none !important;
+}
+
+/* Change document background color */
+.md-main, .md-main__inner, .md-content, .md-content__inner {
+  background-color: #fffcf5 !important;
+}
+
+/* Move search bar to the right of the navbar */
+.md-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.md-search {
+  margin-left: auto;
+}
+
+/* Change search bar background color */
+.md-search__form {
+  background: #fffbe8 !important;
+  border-radius: 0.5rem;
+}
+
+/* Change search input background and text color */
+.md-search__input {
+  background: #fffbe8 !important;
+  color: #ff914d !important;
+}
+
+/* Change search icon color */
+.md-search__icon svg {
+  color: #ff914d !important;
+}
+
+/* Adjust vertical alignment for the increased height */
+.md-header__inner {
+  height: 4rem;
+  padding: 0.5rem 0;
+}
+
+/* Change navbar text color to orange */
+.md-header__title,
+.md-header__topic,
+.md-header__button,
+.md-header__source,
+.md-header__topic .md-ellipsis,
+.md-header__title .md-header__topic,
+.md-nav__title,
+.md-header .md-tabs__link,
+.md-header .md-search__input::placeholder,
+.md-header__button.md-logo,
+.md-header .md-tabs__item--active .md-tabs__link {
+  color: #ff914d !important;
+}
+
+/* Ensure search icon and other SVG elements are also orange */
+.md-header .md-search__icon svg {
+  color: #ff914d !important;
+}
+
+/* Adjust search input for the new navbar height */
+.md-search__inner {
+  margin-top: 0.5rem;
+}
+
+/* Make sure the navbar shadow is subtle */
+.md-header[data-md-state=shadow] {
+  box-shadow: 0 0 0.2rem rgba(0,0,0,.1), 0 0.2rem 0.4rem rgba(0,0,0,.05);
+}

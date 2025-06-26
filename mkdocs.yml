@@ -1,0 +1,101 @@
+site_name: Recruit41
+site_url: https://docs.recruit41.com/
+
+# Comment out repository information, we don't want to link to a GitHub repository in our header.
+# repo_url: https://github.com/recruit41/docs
+# repo_name: recruit41/docs
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+  features:
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - search.sidebar
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - navigation.footer
+    - header.sticky
+  icon:
+    logo: material/book-open-page-variant
+    admonition:
+      note: material/pencil-circle
+      abstract: material/clipboard-text
+      info: material/information
+      tip: material/lightbulb
+      success: material/check-circle
+      question: material/help-circle
+      warning: material/alert
+      failure: material/close-circle
+      danger: material/fire
+      bug: material/bug
+      example: material/test-tube
+      quote: material/format-quote-close
+  font:
+    text: Roboto
+    code: Roboto Mono
+  language: en
+  palette:
+    primary: orange
+    accent: deep-orange
+
+# Custom CSS
+extra_css:
+  - stylesheets/extra.css
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Home: index.md
+  - Candidate Guide:
+    - Interview Instructions: candidate/index.md
+  - Recruiter Guide:
+    - Overview: recruiter/index.md
+    - Email Templates: recruiter/email-templates.md

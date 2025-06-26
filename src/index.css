@@ -1,0 +1,215 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --card: 255 255 255;
+    --card-foreground: 0 0 0;
+    --popover: 255 255 255;
+    --popover-foreground: 0 0 0;
+    --primary: 0 0 0;
+    --primary-foreground: 255 255 255;
+    --secondary: 248 248 248;
+    --secondary-foreground: 0 0 0;
+    --muted: 248 248 248;
+    --muted-foreground: 120 120 120;
+    --accent: 232 232 232;
+    --accent-foreground: 0 0 0;
+    --destructive: 40 40 40;
+    --destructive-foreground: 255 255 255;
+    --border: 232 232 232;
+    --input: 232 232 232;
+    --ring: 0 0 0;
+    --radius: 0.75rem;
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 120 120 120;
+    --sidebar-primary: 0 0 0;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 248 248 248;
+    --sidebar-accent-foreground: 0 0 0;
+    --sidebar-border: 232 232 232;
+    --sidebar-ring: 0 0 0;
+  }
+
+  .dark {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --card: 24 24 24;
+    --card-foreground: 255 255 255;
+    --popover: 0 0 0;
+    --popover-foreground: 255 255 255;
+    --primary: 255 255 255;
+    --primary-foreground: 0 0 0;
+    --secondary: 24 24 24;
+    --secondary-foreground: 255 255 255;
+    --muted: 24 24 24;
+    --muted-foreground: 168 168 168;
+    --accent: 56 56 56;
+    --accent-foreground: 255 255 255;
+    --destructive: 168 168 168;
+    --destructive-foreground: 255 255 255;
+    --border: 56 56 56;
+    --input: 56 56 56;
+    --ring: 255 255 255;
+    --sidebar-background: 0 0 0;
+    --sidebar-foreground: 255 255 255;
+    --sidebar-primary: 255 255 255;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 24 24 24;
+    --sidebar-accent-foreground: 255 255 255;
+    --sidebar-border: 56 56 56;
+    --sidebar-ring: 255 255 255;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.8s ease-out;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient backgrounds */
+.gradient-bg-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-bg-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Loading animations */
+.pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollytelling smooth transitions */
+.logo-transition {
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, filter;
+}
